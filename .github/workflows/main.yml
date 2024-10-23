@@ -19,21 +19,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3  # Faz o checkout do repositório
 
-      # Define o diretório de trabalho para a pasta 'api'
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-        working-directory: ./api  # Define o diretório de trabalho
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./api  # Define o diretório de trabalho
+        working-directory: ./api  # Define o diretório de trabalho para este comando
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli@13
-        working-directory: ./api  # Define o diretório de trabalho
+        working-directory: ./api  # Define o diretório de trabalho para este comando
 
       - name: Build Angular app
         run: ng build --configuration production
-        working-directory: ./
+        working-directory: ./api  # Define o diretório de trabalho para este comando
+
+      - name: Run unit tests
+        run: ng test --watch=false --browsers=ChromeHeadless
+        working-directory: ./api  # Define o diretório de trabalho para este comando
+
+      - name: Run end-to-end tests (if applicable)
+        run: ng e2e --configuration production --headless
+        working-directory: ./api  # Define o diretório de trabalho para este comando
