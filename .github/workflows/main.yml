@@ -32,10 +32,7 @@ jobs:
         run: npm install -g @angular/cli@13
         working-directory: ./api  # Define o diretório de trabalho para este comando
 
-      - name: Build Angular app
-        run: ng build --configuration production
-        working-directory: ./api  # Define o diretório de trabalho para este comando
-
+      
       - name: Run unit tests
         run: ng test --watch=false --browsers=ChromeHeadless
         working-directory: ./api  # Define o diretório de trabalho para este comando
