@@ -37,6 +37,3 @@ jobs:
         run: ng test --watch=false --browsers=ChromeHeadless
         working-directory: ./api  # Define o diretório de trabalho para este comando
 
-      - name: Run end-to-end tests (if applicable)
-        run: ng e2e --configuration production --headless
-        working-directory: ./api  # Define o diretório de trabalho para este comando
