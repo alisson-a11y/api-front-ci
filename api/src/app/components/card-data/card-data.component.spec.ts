@@ -43,7 +43,7 @@ describe('CardDataComponent', () => {
   })
 
   it('deve formatar uma data válida no formato pt-BR', () => {
-    const dataISO = '2024-10-18';
+    const dataISO = '2024-10-17';
     const resultado = component.formatarData(dataISO);
     expect(resultado).toBe('17/10/2024');
   });
