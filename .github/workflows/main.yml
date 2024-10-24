@@ -32,8 +32,20 @@ jobs:
         run: npm install -g @angular/cli@13
         working-directory: ./api  # Define o diretório de trabalho para este comando
 
-      
       - name: Run unit tests
         run: ng test --watch=false --browsers=ChromeHeadless
         working-directory: ./api  # Define o diretório de trabalho para este comando
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: alisson4  # Use as credenciais de Docker do GitHub Secrets
+          password: dckr_pat_t_YSQEJrcJyyKTEJ_V1mTRgV8JU
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./api  # Contexto do Dockerfile
+          file: ./api/Dockerfile  # Caminho para o Dockerfile
+          push: true
+          tags: alisson4/angular-app:latest  # Tags da imagem
